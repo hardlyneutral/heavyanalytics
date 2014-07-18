@@ -1,20 +1,22 @@
 #Heavy Analytics
-Contributors: themightymo, hardlyneutral
+IMPORTANT NOTE FROM THE AUTHORS: 4 years ago, we set out to build the definitive WordPress & BuddyPress analytics plugin. Our vision was and remains large and awesome. We won prizes with our prototype and were encouraged by all the support we received from the WordPress community.
 
-Donate link: http://www.heavyanalytics.com
+Furthermore, we believe that the concept of qualitative analytics is woefully-underexplored in the world of WordPress. Put simply, we believe this is a potentially-huge and untapped market.
 
-Tags: analytics, tracking, metrics, data, graphs, charts, charting, intelligence
+All that said, we simply do not have the time or energy to continue with the project in its current form.
 
-Requires at least: 3.0
+Today, we are putting our code on Github.com in a public repository. We hope that you will fork the code and manipulate our idea to your own ends (and hopefully share the code so that others can benefit).
 
-Tested up to: 3.8.1
+---
+* Contributors: themightymo, hardlyneutral
+* Tags: analytics, tracking, metrics, data, graphs, charts, charting, intelligence
+* Requires at least: 3.0
+* Tested up to: 3.8.1
+* Stable tag: 0.5
+* License: GPLv2 or later
+* License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
-Stable tag: 0.5
-
-License: GPLv2 or later
-
-License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
-
+##Description
 Heavy Analytics is a WordPress plugin used to track content and user statistics.  
 
 We have a lot of ideas to extend this plugin and would love any feedback you have.  Please send feedback to info@heavyanalytics.com and join our email list at http://www.heavyanalytics.com.
