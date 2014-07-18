@@ -26,16 +26,6 @@ http://www.youtube.com/watch?v=F0NXzH5_ibs
 2. Upload the Heavy Analytics plugin directory and all its contents to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
-== Frequently Asked Questions ==
-
-= Is this another Google Analytics type thing? =
-
-Nope. Heavy Analytics is about analyzing the quality of the content of your site, not all amount/source/referrer/etc.
-
-= When will BuddyPress-specific analytics be available? =
-
-Coming soon!
-
 == Screenshots ==
 
 1. A user's avatar image with a text overlay displaying the number of posts they have published and their "nice name".
