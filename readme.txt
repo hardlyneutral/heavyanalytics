@@ -1,6 +1,5 @@
 === Heavy Analytics ===
 Contributors: themightymo, hardlyneutral
-Donate link: http://www.heavyanalytics.com
 Tags: analytics, tracking, metrics, data, graphs, charts, charting, intelligence
 Requires at least: 3.0
 Tested up to: 3.8.1
@@ -8,7 +7,7 @@ Stable tag: 0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Heavy Analytics is a WordPress plugin used to track content and user statistics.  
+Heavy Analytics is a WordPress plugin used to track content and user statistics.
 
 We have a lot of ideas to extend this plugin and would love any feedback you have.  Please send feedback to info@heavyanalytics.com and join our email list at http://www.heavyanalytics.com.
 
