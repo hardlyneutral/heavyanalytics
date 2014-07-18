@@ -1,0 +1,44 @@
+#heavy-analytics-home-view, p { margin:0; padding:0; }
+
+h2.heavy-admin-top-icon {
+    background-image:url('../images/heavy_admin_icon_header.png');
+    background-position:left;
+    background-repeat:no-repeat;
+    padding-left:50px;
+    }
+
+#heavy-analytics-main-menu-navigation { padding:20px 0 30px 0; }
+#heavy-analytics-main-menu-navigation ul { margin:0; }
+#heavy-analytics-main-menu-navigation ul li { display:inline; margin-right:10px; }
+#heavy-analytics-main-menu-navigation ul li a { color:#1e99d4; text-decoration:none; font-weight:bold; font-size:14px; font-family:"Lucida Grande", "Lucida Sans Unicode", sans-serif; }
+#heavy-analytics-main-menu-navigation ul li a:hover { text-decoration:underline; }
+#heavy-analytics-main-menu-navigation .bracket { color:#f77c1e; font-family:Georgia, "Times New Roman", Times, serif; font-size:15px; font-weight:bold; }
+
+.table-totals { background-color: #CDCDCD; font-weight:bold; }
+
+#heavy-analytics-site-health { width:100%; font-family:Georgia, "Times New Roman", Times, serif; font-size:24px; color:#f77c1e; line-height:100px; }
+#heavy-analytics-site-health span { font-family:impact; font-size:123px; }
+#heavy-analytics-site-health span.heavy-analytics-site-health-good { color:#7ed923; }
+#heavy-analytics-site-health span.heavy-analytics-site-health-okay { color:#1e99d4; }
+#heavy-analytics-site-health span.heavy-analytics-site-health-bad { color:#d92b4b; }
+
+.heavy-analytics-section-header { background-color:#fff; border-top:solid #1e99d4 1px; border-bottom:solid #1e99d4 1px; width:100%; text-align:center; }
+.wrap .heavy-analytics-section-header h2 { font-family:Helvetica, Arial, sans-serif; color:#464646; font-size:23px; font-style:normal; padding:3px 0 0 0; font-weight:bold; margin-top:0; }
+.heavy-analytics-section-header h2 .green { color:#7eac4d; }
+.heavy-analytics-section { background-color:#fffcf6; padding:20px 10px 0px 10px; }
+
+button { cursor:pointer; }
+
+#heavy-analytics-graph { height:350px; padding-bottom: 0; }
+#heavy-analytics-graph #placeholder { float:left; }
+#heavy-analytics-graph #choices { float:left; margin-left:3px; }
+
+.heavy-analytics-user { clear:both; }
+.heavy-analytics-user li { display:inline-block; padding-right:34px; vertical-align: top; max-width: 90px; }
+.heavy-analytics-user img { border:#1e99d4 2px solid; -webkit-box-shadow: 2px 2px 10px #000000; -moz-box-shadow: 2px 2px 10px #000000; box-shadow: 2px 2px 10px #000000;}
+
+.avatar-container { position: relative; }
+	.num-posts { position: absolute; bottom: 5px; padding: 5px; position: absolute; text-align: right;
+		width: 85px; font-family: 'Droid Sans', serif; color:#fff; font-size:16px; text-shadow: 1px 1px 3px #000000; filter: dropshadow(color=#000000, offx=1, offy=1); }
+		.posts-published { font-size:14px; }
+	.nicename  { font-family: 'Droid Sans', serif; font-size: 18px; line-height:20px;  margin-top: 2px; padding: 5px; word-wrap:break-word; }
