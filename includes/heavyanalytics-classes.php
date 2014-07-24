@@ -55,16 +55,14 @@ class Post_Analytics {
 	 * $post_type expects either 'post' or 'page'; if not set, default to 'post'
 	 * if either date is invalid, data return is for all time
 	 */
-	function post_analytics_totals($date_start, $date_end, $type) {
+	function post_analytics_totals($date_start, $date_end, $type='post') {
 		
 		global $wpdb;
-		
-		if ( !isset($type) ) { $type = 'post'; }
 		
 		$date = $this->date_handler($date_start, $date_end);
 		
 		// get count of posts that are published
-		$published_post_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = '$type' AND post_status = 'publish' AND post_date BETWEEN $date[start] AND $date[end]"));
+		$published_post_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = %s AND post_status = 'publish' AND post_date BETWEEN %s AND %s", $type, $date[start], $date[end]));
 		
 		return $published_post_count;
 		
@@ -77,15 +75,13 @@ class Post_Analytics {
 	 * $post_type expects either 'post' or 'page'; if not set, default to 'post'
 	 * if either date is invalid, data return is for all time
 	 */
-	function post_analytics_by_date($date_start, $date_end, $type) {
+	function post_analytics_by_date($date_start, $date_end, $type='post') {
 	
 		global $wpdb;
 		
-		if ( !isset($type) ) { $type = 'post'; }
-		
 		$date = $this->date_handler($date_start, $date_end);
 
-		$posts_by_date = $wpdb->get_results($wpdb->prepare("SELECT post_date, COUNT(*) as count FROM $wpdb->posts WHERE post_type = '$type' AND post_status = 'publish' AND post_date BETWEEN $date[start] AND $date[end] GROUP BY DATE(post_date)"));
+		$posts_by_date = $wpdb->get_results($wpdb->prepare("SELECT post_date, COUNT(*) as count FROM $wpdb->posts WHERE post_type = %s AND post_status = 'publish' AND post_date BETWEEN %s AND %s GROUP BY DATE(post_date)", $type, $date[start], $date[end]));
 		
 		$data_set = array();
 		
@@ -112,7 +108,7 @@ class Post_Analytics {
 		
 		$date = $this->date_handler($date_start, $date_end);
 		
-		$approved_comment_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '1' AND comment_type = '$type' AND comment_date BETWEEN $date[start] AND $date[end]"));
+		$approved_comment_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '1' AND comment_type = %s AND comment_date BETWEEN %s AND %s", $type, $date[start], $date[end]));
 		
 		return $approved_comment_count;
 	}
@@ -123,13 +119,14 @@ class Post_Analytics {
 	 * Get array of data containing comments and the dates they were approved/published/added.
 	 * If either date is invalid, data return is for all time.
 	 */
-	function comment_analytics_by_date($date_start, $date_end, $type) {
+	function comment_analytics_by_date($date_start, $date_end, $type='') {
 
 		global $wpdb;
 		
 		$date = $this->date_handler($date_start, $date_end);
+		$query = $wpdb->prepare("SELECT comment_date, COUNT(*) as count FROM $wpdb->comments WHERE comment_approved = '1' AND comment_type=%s AND comment_date BETWEEN %s AND %s GROUP BY DATE(comment_date)", $type, $date[start], $date[end]);
 		
-		$comments_by_date = $wpdb->get_results($wpdb->prepare("SELECT comment_date, COUNT(*) as count FROM $wpdb->comments WHERE comment_approved = '1' AND comment_type='$type' AND comment_date BETWEEN $date[start] AND $date[end] GROUP BY DATE(comment_date)"));
+		$comments_by_date = $wpdb->get_results($query);
 		
 		$data_set = array();
 		
@@ -154,7 +151,7 @@ class Post_Analytics {
 		
 		$date = $this->date_handler($date_start, $date_end);
 		
-		$registered_user_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $wpdb->users WHERE user_registered BETWEEN $date[start] AND $date[end]"));
+		$registered_user_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $wpdb->users WHERE user_registered BETWEEN %s AND %s", $date[start], $date[end]));
 		
 		return $registered_user_count;
 	}
@@ -171,7 +168,7 @@ class Post_Analytics {
 		
 		$date = $this->date_handler($date_start, $date_end);
 		
-		$users_by_date = $wpdb->get_results($wpdb->prepare("SELECT user_registered, COUNT(*) as count FROM $wpdb->users WHERE user_registered BETWEEN $date[start] AND $date[end] GROUP BY DATE(user_registered)"));							
+		$users_by_date = $wpdb->get_results($wpdb->prepare("SELECT user_registered, COUNT(*) as count FROM $wpdb->users WHERE user_registered %s AND %s GROUP BY DATE(user_registered)", $date[start], $date[end]));
 		
 		$data_set = array();
 		
@@ -210,7 +207,7 @@ class Site_Health {
 		
 		// get the average number of posts per day
 		// get the date of the first post
-		$first_post_date = strtotime($wpdb->get_var($wpdb->prepare("SELECT post_date FROM $wpdb->posts ORDER BY post_date ASC LIMIT 1")));
+		$first_post_date = strtotime($wpdb->get_var("SELECT post_date FROM $wpdb->posts ORDER BY post_date ASC LIMIT 1"));
 		
 		// count the number days between the first post and today
 		$number_of_days_between_posts = round((strtotime("now") - $first_post_date) / 86400);
@@ -239,7 +236,7 @@ class Site_Health {
 		
 		// get the average number of comments per day
 		// get the date of the first comment
-		$first_comment_date = strtotime($wpdb->get_var($wpdb->prepare("SELECT comment_date FROM $wpdb->comments ORDER BY comment_date ASC LIMIT 1")));
+		$first_comment_date = strtotime($wpdb->get_var("SELECT comment_date FROM $wpdb->comments ORDER BY comment_date ASC LIMIT 1"));
 		
 		// count the days between the first comment and today
 		$number_of_days_between_comments = round((strtotime("now") - $first_comment_date) / 86400);
@@ -288,12 +285,12 @@ class Site_Health {
 		global $wpdb;
 
 		// build an array containing user's ID, nice name, and count of total posts
-		$top_posters = $wpdb->get_results($wpdb->prepare("SELECT u.ID, u.display_name, COUNT(p.post_author) AS num_posts
+		$top_posters = $wpdb->get_results("SELECT u.ID, u.display_name, COUNT(p.post_author) AS num_posts
 														   FROM $wpdb->users AS u
 														   LEFT JOIN $wpdb->posts AS p ON u.ID = p.post_author
 														   WHERE p.post_type = 'post' AND p.post_status = 'publish'
 														   GROUP BY u.ID
-														   ORDER BY num_posts DESC LIMIT 5"));
+														   ORDER BY num_posts DESC LIMIT 5");
 
 		return $top_posters;
 	}
@@ -307,11 +304,11 @@ class Site_Health {
 	function top_commenters() {
 		global $wpdb;
 
-		$top_commenters = $wpdb->get_results($wpdb->prepare("SELECT comment_author, comment_author_email, COUNT(comment_author) AS num_comments 
+		$top_commenters = $wpdb->get_results("SELECT comment_author, comment_author_email, COUNT(comment_author) AS num_comments
 																FROM $wpdb->comments
 																WHERE comment_approved = '1' AND comment_type != 'trackback' AND comment_type != 'pingback'
 																GROUP BY comment_author
-																ORDER BY num_comments DESC LIMIT 5"));
+																ORDER BY num_comments DESC LIMIT 5");
 
 		return $top_commenters;
 	}
